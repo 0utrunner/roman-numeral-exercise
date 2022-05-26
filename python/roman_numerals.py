@@ -23,5 +23,3 @@ def to_roman(num):
                 result.append(key)
                 arabic_number = arabic_number - roman[key]
     return (''.join(result))
-
-print(to_roman(5))
