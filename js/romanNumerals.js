@@ -1,6 +1,6 @@
-exports.toRoman = function(num) {
-const result = []
-let arabicNumber = num
+var rn = require("./romanNumerals");
+
+exports.toRoman = function(num, result = []) {
 let roman = {
     M: 1000,
     CM: 900,
@@ -17,12 +17,10 @@ let roman = {
     I: 1
 }
 for(let key in roman){
-    let evenly_divisible_times = (arabicNumber / roman[key])
+    let evenly_divisible_times = ( num / roman[key])
     if(evenly_divisible_times >= 1){
-        for(let i = parseInt(evenly_divisible_times); i > 0; i--){
-            result.push(key)
-            arabicNumber = arabicNumber - roman[key]
-        }
+        result.push(key)
+        return rn.toRoman(num - roman[key], result)
     }
 }
 return result.join('')
